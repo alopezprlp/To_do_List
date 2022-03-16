@@ -9,7 +9,7 @@ const Nav = () => {
       </div>
       <div className="flex items-center space-x-5">
         <img
-          class="rounded-full"
+          className="rounded-full"
           src="https://images.unsplash.com/placeholder-avatars/extra-large.jpg?dpr=1&auto=format&fit=crop&w=27&h=27&q=60&crop=faces&bg=fff 1x, https://images.unsplash.com/placeholder-avatars/extra-large.jpg?dpr=2&auto=format&fit=crop&w=27&h=27&q=60&crop=faces&bg=fff 2x"
           alt="avatar"
         />
