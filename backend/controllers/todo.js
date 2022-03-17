@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/getAllTasks", async (req, res) => {
   try {
-    const todo = await Todo.query();
+    const todo = await Todo.query().orderBy('id');
     res.json(todo).status(201);
   } catch (error) {
     console.log(error);
