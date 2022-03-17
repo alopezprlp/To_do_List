@@ -11,7 +11,7 @@ require("dotenv").config();
 app.use(parser.urlencoded({ extended: true }));
 app.use(parser.json());
 app.use(cors());
-app.set("port", process.env.PORT || 3000);
+app.set("port", process.env.PORT || 5000);
 app.use("/api", router);
 
 app.get("/", (req, res) => {
