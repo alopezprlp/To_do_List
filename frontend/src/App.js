@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Nav from "./components/Nav";
 import Todo from "./components/Todo";
 import { useGlobalContext } from "./context";
-import { FILL_STORED_LIST } from "./context/constants";
+import { fillList } from "./context/action";
 const App = () => {
   const { dispatch } = useGlobalContext();
 
@@ -11,11 +11,7 @@ const App = () => {
       fetch("http://localhost:5000/api/getAllTasks")
         .then((response) => response.json())
         .then((data) => {
-          dispatch({
-            type: FILL_STORED_LIST,
-            payload: data,
-          });
-          console.log(data);
+          dispatch(fillList(data));
         });
     };
     fetchApi();

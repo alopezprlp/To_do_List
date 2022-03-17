@@ -10,6 +10,13 @@ export const fillList = (list) => {
 export const addTask = (Item) => {
   return {
     type: type.ADD_TASK,
-    payload: Item,
+    payload: { id: Item.id, name: Item.name },
+  };
+};
+
+export const removeTask = (id) => {
+  return {
+    type: type.REMOVE_TASK,
+    payload: id,
   };
 };

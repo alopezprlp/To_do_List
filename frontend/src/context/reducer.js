@@ -6,14 +6,17 @@ export const reducer = (state, action) => {
         taskList: [
           ...state.taskList,
           {
-            id: action.Item.id,
-            task: action.Item.task,
-            status: action.Item.status,
+            id: action.payload.id,
+            name: action.payload.name,
+            status: "PENDING",
           },
         ],
       };
     case type.FILL_STORED_LIST:
       return { taskList: [...action.payload] };
+    case type.REMOVE_TASK:
+      const temp = [...state.taskList.filter((e) => e.id !== action.payload)];
+      return { taskList: [...temp] };
     default:
       return state;
   }
