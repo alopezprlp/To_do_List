@@ -4,8 +4,44 @@ const Todo = require("../models/schema");
 const router = express.Router();
 
 router.get("/getAllTasks", async (req, res) => {
-  const todo = await Todo.query();
-  res.json(todo).status(201);
+  try {
+    const todo = await Todo.query();
+    res.json(todo).status(201);
+  } catch (error) {
+    console.log(error);
+    res.json(error).status(500);
+  }
+});
+
+router.post("/addTask", async (req, res) => {
+  try {
+    const task = await Todo.query().insert({ name: req.body.name });
+    res.json(task).status(201);
+  } catch (error) {
+    res.json(error).status(500);
+  }
+});
+router.delete("/deleteTask", async (req, res) => {
+  try {
+    const task = await Todo.query().deleteById(req.body.id);
+    res.json(task).status(201);
+  } catch (error) {
+    res.json(error).status(500);
+  }
+});
+
+router.put("/updateTask", async (req, res) => {
+  try {
+    const task = await Todo.query()
+      .findById(req.body.id)
+      .patch({
+        name: req.body.name,
+        status: req.body.status ? req.body.status : "PENDING",
+      });
+    res.json(task).status(201);
+  } catch (error) {
+    res.json(error).status(500);
+  }
 });
 
 module.exports = router;
