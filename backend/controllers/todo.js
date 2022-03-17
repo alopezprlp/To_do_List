@@ -32,12 +32,19 @@ router.delete("/deleteTask", async (req, res) => {
 
 router.put("/updateTask", async (req, res) => {
   try {
-    const task = await Todo.query()
-      .findById(req.body.id)
-      .patch({
-        name: req.body.name,
-        status: req.body.status ? req.body.status : "PENDING",
-      });
+    const task = await Todo.query().findById(req.body.id).patch({
+      name: req.body.name,
+    });
+    res.json(task).status(201);
+  } catch (error) {
+    res.json(error).status(500);
+  }
+});
+router.put("/changeStatus", async (req, res) => {
+  try {
+    const task = await Todo.query().findById(req.body.id).patch({
+      status: req.body.status,
+    });
     res.json(task).status(201);
   } catch (error) {
     res.json(error).status(500);

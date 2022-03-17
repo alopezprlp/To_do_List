@@ -20,3 +20,23 @@ export const removeTask = (id) => {
     payload: id,
   };
 };
+
+export const updateTask = ({ id,name }) => {
+  return {
+    type: type.EDIT_TASK,
+    payload: {
+      name,
+      id
+    },
+  };
+};
+
+export const changeStatus = ({ id, status }) => {
+  return {
+    type: type.CHANGE_STATUS,
+    payload: {
+      status,
+      id,
+    },
+  };
+};
